@@ -34,13 +34,15 @@ html, body {
         background-color: #003049EE;
         box-shadow: 5px 5px 5px #c8c8c8;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
     }
     
     .sidebar-search {
         display: block;
         margin: 10px auto;
         width: 80%;
-        height: 5%;
+        height: 35px;
         color: #40798C;
         background-color: #F4EFF1;
         outline: none;
@@ -48,9 +50,15 @@ html, body {
         border-radius: 5px;
         font-size: 20px;
         font-family: 'Dosis', sans-serif;
-        text-align: center
+        text-align: center;
     }
     .sidebar-search:focus {
         box-shadow: 0 0 3px 2px #a8a8a8;
+    }
+    .label {
+        color: #ffffff;
+    }
+    .sidebar-radio {
+        margin: 10px;
     }
 }

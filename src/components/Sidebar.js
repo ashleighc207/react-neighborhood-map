@@ -5,7 +5,11 @@ class Sidebar extends Component {
     render() {
     return(
         <div className="sidebar-container">
-            <input type="text" placeholder="search" className="sidebar-search"/>
+            <input type="text" placeholder="Search by zipcode" className="sidebar-search"/>
+            <div className="input-box">
+                <input type="radio" name="Breed" className="sidebar-radio"/>
+                <label for="Breed" value="Breed" className="label">Breed</label>
+            </div>
         </div>
     ) 
   }
