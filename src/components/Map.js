@@ -7,10 +7,10 @@ mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcH
 class Map extends Component {
     componentDidMount() {
         this.map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-        center: [-76.61, 39.29], // starting position [lng, lat]
-        zoom: 9 // starting zoom
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9', 
+        center: [-76.61, 39.29], 
+        zoom: 11 
     });
     }
     
@@ -19,14 +19,7 @@ class Map extends Component {
     }
 
     render() {
-      const style = {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        width: '100%'
-      };
-
-    return <div style={style} ref={el => this.mapContainer = el} />;
+    return <div ref={el => this.mapContainer = el} />;
   }
 }
 
