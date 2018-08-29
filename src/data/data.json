@@ -1,0 +1,535 @@
+{
+	"venues": [{
+		"id": "4aef6f6bf964a5206dd821e3",
+		"name": "Shoppers Food",
+		"contact": {},
+		"location": {
+			"address": "857 E Fort Ave",
+			"lat": 39.270412582374014,
+			"lng": -76.60380363464355,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.270412582374014,
+				"lng": -76.60380363464355
+			}],
+			"distance": 2244,
+			"postalCode": "21230",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["857 E Fort Ave", "Baltimore, MD 21230", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d118951735",
+			"name": "Grocery Store",
+			"pluralName": "Grocery Stores",
+			"shortName": "Grocery Store",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": true,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "509163e2b0b93c8e511e9cc0",
+		"name": "Food Lion Grocery Store",
+		"contact": {},
+		"location": {
+			"address": "8635 Walther Blvd",
+			"lat": 39.3881867287568,
+			"lng": -76.50777179271141,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.3881867287568,
+				"lng": -76.50777179271141
+			}],
+			"distance": 14033,
+			"postalCode": "21236",
+			"cc": "US",
+			"city": "Perry Hall",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["8635 Walther Blvd", "Perry Hall, MD 21236", "United States"]
+		},
+		"categories": [{
+			"id": "52f2ab2ebcbc57f1066b8b46",
+			"name": "Supermarket",
+			"pluralName": "Supermarkets",
+			"shortName": "Supermarket",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": true,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4cbca0a4558576b024d34a0e",
+		"name": "Gypsy Queen Cafe Food Truck",
+		"contact": {},
+		"location": {
+			"crossStreet": "See Twitter for current location",
+			"lat": 39.298685690291485,
+			"lng": -76.59080941531391,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.298685690291485,
+				"lng": -76.59080941531391
+			}],
+			"distance": 1915,
+			"postalCode": "21201",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["See Twitter for current location", "Baltimore, MD 21201", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d1cb941735",
+			"name": "Food Truck",
+			"pluralName": "Food Trucks",
+			"shortName": "Food Truck",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/streetfood_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "5074790fe4b092f5e84a6a48",
+		"name": "Yonma\u2019s Halal Food Cart",
+		"contact": {},
+		"location": {
+			"address": "Market & E. Lombard",
+			"lat": 39.284634333899696,
+			"lng": -76.60716676287139,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.284634333899696,
+				"lng": -76.60716676287139
+			}],
+			"distance": 645,
+			"postalCode": "21202",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["Market & E. Lombard", "Baltimore, MD 21202", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d1cb941735",
+			"name": "Food Truck",
+			"pluralName": "Food Trucks",
+			"shortName": "Food Truck",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/streetfood_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4bb374b0a32876b004b301fe",
+		"name": "Mediterranean Halal Food Cart",
+		"contact": {},
+		"location": {
+			"address": "W Baltimore St & Hopkins Pl",
+			"crossStreet": "outside PNC Bank",
+			"lat": 39.287894237290224,
+			"lng": -76.61965764951513,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.287894237290224,
+				"lng": -76.61965764951513
+			}],
+			"distance": 864,
+			"postalCode": "21201",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["W Baltimore St & Hopkins Pl (outside PNC Bank)", "Baltimore, MD 21201", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d1cb941735",
+			"name": "Food Truck",
+			"pluralName": "Food Trucks",
+			"shortName": "Food Truck",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/streetfood_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4fce3517e4b0fb844df8c1b7",
+		"name": "Koopers chowhound food truck",
+		"contact": {},
+		"location": {
+			"lat": 39.28044449676314,
+			"lng": -76.59892346281593,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.28044449676314,
+				"lng": -76.59892346281593
+			}],
+			"distance": 1429,
+			"postalCode": "21207",
+			"cc": "US",
+			"city": "Gwynn Oak",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["Gwynn Oak, MD 21207", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d1cb941735",
+			"name": "Food Truck",
+			"pluralName": "Food Trucks",
+			"shortName": "Food Truck",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/streetfood_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4af71c33f964a520f70522e3",
+		"name": "Giant Food",
+		"contact": {},
+		"location": {
+			"address": "601 E 33rd St",
+			"crossStreet": "btwn Old York & Frisby",
+			"lat": 39.32786799879756,
+			"lng": -76.60804152488714,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.32786799879756,
+				"lng": -76.60804152488714
+			}],
+			"distance": 4218,
+			"postalCode": "21218",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["601 E 33rd St (btwn Old York & Frisby)", "Baltimore, MD 21218", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d118951735",
+			"name": "Grocery Store",
+			"pluralName": "Grocery Stores",
+			"shortName": "Grocery Store",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4aa3e44ff964a520414420e3",
+		"name": "Giant Food",
+		"contact": {},
+		"location": {
+			"address": "8100 Loch Raven Blvd",
+			"crossStreet": "Taylor Ave",
+			"lat": 39.38713784180071,
+			"lng": -76.576868891716,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.38713784180071,
+				"lng": -76.576868891716
+			}],
+			"distance": 11183,
+			"postalCode": "21286",
+			"cc": "US",
+			"city": "Towson",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["8100 Loch Raven Blvd (Taylor Ave)", "Towson, MD 21286", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d118951735",
+			"name": "Grocery Store",
+			"pluralName": "Grocery Stores",
+			"shortName": "Grocery Store",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "502e5e1be4b05159d49a2b6e",
+		"name": "food fetish",
+		"contact": {},
+		"location": {
+			"lat": 39.29081344604492,
+			"lng": -76.60953521728516,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.29081344604492,
+				"lng": -76.60953521728516
+			}],
+			"distance": 99,
+			"postalCode": "21202",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["Baltimore, MD 21202", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d1cb941735",
+			"name": "Food Truck",
+			"pluralName": "Food Trucks",
+			"shortName": "Food Truck",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/streetfood_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}, {
+		"id": "4b9970d1f964a520b37b35e3",
+		"name": "Giant Food",
+		"contact": {},
+		"location": {
+			"address": "4622 Wilkens Ave",
+			"crossStreet": "at Maiden Ave.",
+			"lat": 39.2662513,
+			"lng": -76.698686,
+			"labeledLatLngs": [{
+				"label": "display",
+				"lat": 39.2662513,
+				"lng": -76.698686
+			}],
+			"distance": 8086,
+			"postalCode": "21229",
+			"cc": "US",
+			"city": "Baltimore",
+			"state": "MD",
+			"country": "United States",
+			"formattedAddress": ["4622 Wilkens Ave (at Maiden Ave.)", "Baltimore, MD 21229", "United States"]
+		},
+		"categories": [{
+			"id": "4bf58dd8d48988d118951735",
+			"name": "Grocery Store",
+			"pluralName": "Grocery Stores",
+			"shortName": "Grocery Store",
+			"icon": {
+				"prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/food_grocery_",
+				"suffix": ".png"
+			},
+			"primary": true
+		}],
+		"verified": false,
+		"stats": {
+			"tipCount": 0,
+			"usersCount": 0,
+			"checkinsCount": 0,
+			"visitsCount": 0
+		},
+		"beenHere": {
+			"count": 0,
+			"lastCheckinExpiredAt": 0,
+			"marked": false,
+			"unconfirmedCount": 0
+		},
+		"hereNow": {
+			"count": 0,
+			"summary": "Nobody here",
+			"groups": []
+		},
+		"referralId": "v-1535550186",
+		"venueChains": [],
+		"hasPerk": false
+	}]
+}

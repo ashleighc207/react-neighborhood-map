@@ -22,6 +22,16 @@ html, body {
     display: none;
 }
 
+.marker {
+  background-image: url('./mapbox-icon.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
 @media screen and (min-width: 730px){
     .sidebar-container {
         position: absolute;
@@ -62,3 +72,4 @@ html, body {
         margin: 10px;
     }
 }
+

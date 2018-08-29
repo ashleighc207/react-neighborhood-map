@@ -8,7 +8,7 @@ class Sidebar extends Component {
             <input type="text" placeholder="Search by zipcode" className="sidebar-search"/>
             <div className="input-box">
                 <input type="radio" name="Breed" className="sidebar-radio"/>
-                <label for="Breed" value="Breed" className="label">Breed</label>
+                <label htmlFor="Breed" value="Breed" className="label">Breed</label>
             </div>
         </div>
     ) 
