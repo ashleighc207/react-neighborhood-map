@@ -4,11 +4,11 @@ import '../App.css';
 
 mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
-let point, map;
+var point, map;
 
 
 class Map extends Component {
-        
+    
     componentDidMount() {
         
     map = new mapboxgl.Map({
@@ -18,7 +18,7 @@ class Map extends Component {
         zoom: 11 
     });
     
-     const { data } = this.props;
+     const { data, markers } = this.props;
     
     data.venues.forEach(function(marker) {
         

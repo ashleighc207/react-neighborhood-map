@@ -4,18 +4,27 @@ import Sidebar from './components/Sidebar.js';
 import './App.css';
 import * as placesAPI from './data/placesAPI.js';
 import data from './data/data.json';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 
 class App extends Component {
   state = {
-    data: data
+    data: data,
+    markers: []
   }
   
   render() {
     return (
       <div className="app" id="map">
-        <Sidebar />
-        <Map data={this.state.data} />
+        <Sidebar 
+        venues={this.state.data}
+        markers={this.state.markers}
+        />
+        
+        <Map 
+        data={this.state.data}
+        markers={this.state.markers}
+        />
       </div>
     );
   }

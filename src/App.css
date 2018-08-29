@@ -11,6 +11,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Dosis', sans-serif;
 }
 
 #map {
@@ -29,6 +30,36 @@ html, body {
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.venue-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.venue-sub-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.venue-img {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.venue-name {
+    font-size: 25px;
+    margin: 10px;
+}
+.venue-text {
+    font-size: 16px;
+    line-height: 150%;
+}
+
+.sidebar-container {
+    display: none;
 }
 
 
