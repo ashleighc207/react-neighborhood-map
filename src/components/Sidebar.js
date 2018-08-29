@@ -34,18 +34,7 @@ class Sidebar extends Component {
             this.setState({results: data.response.venues})
         })
         }
-        results.forEach(function(marker) {
         
-    // create a HTML element for each feature
-      var mark = document.createElement('div');
-      mark.className = 'marker';
-    
-      // make a marker for each feature and add to the map
-     point = new mapboxgl.Marker(mark)
-      .setLngLat([marker.location.lng, marker.location.lat])
-      .addTo(map);
-    });
-    return point;
     }
     
     
@@ -56,7 +45,7 @@ class Sidebar extends Component {
     
     return(
         <div className="sidebar-container">
-            <input type="text" placeholder="Search by zipcode" className="sidebar-search" onChange={(event) => this.search(event)}/>
+            <input type="text" placeholder="Search by name" className="sidebar-search" onChange={(event) => this.search(event)}/>
             {!error && results.map(venue => (
             <div className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
