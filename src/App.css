@@ -52,10 +52,12 @@ html, body {
 .venue-name {
     font-size: 25px;
     margin: 10px;
+    color: #ffffff;
 }
 .venue-text {
     font-size: 16px;
     line-height: 150%;
+    color: #ffffff;
 }
 
 .sidebar-container {
