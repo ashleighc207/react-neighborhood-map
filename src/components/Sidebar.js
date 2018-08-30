@@ -28,21 +28,19 @@ class Sidebar extends Component {
         
         this.setState({ query })
         
-        if (query){
-        fetch(`${api}/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=${lat},${lon}&query=${query}`)
-        .then(res => res.json())
-        .then((data) => {
-            this.setState({results: data.response.venues})
-            updateVenues(data.response.venues);
-        })
+        if (query) {
+            fetch(`${api}/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=${lat},${lon}&query=${query}`)
+                .then(res => res.json())
+                .then((data) => {
+                    this.setState({results: data.response.venues})
+                    updateVenues(data.response.venues);
+            })
+        } else if(query === '') {
+            this.setState({results: []})
         }
     
     }
 
-
-    
-    
-    
     render() {
     const { query, results, error } = this.state
     

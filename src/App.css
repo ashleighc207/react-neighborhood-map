@@ -33,76 +33,77 @@ html, body {
 }
 
 .venue-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.venue-sub-box {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.venue-img {
-    height: 100px;
-    width: 100px;
-    margin: 10px;
-}
-
-.venue-name {
-    font-size: 25px;
-    margin: 10px;
-    color: #ffffff;
-}
-.venue-text {
-    font-size: 16px;
-    line-height: 150%;
-    color: #ffffff;
+    display: none;
 }
 
 .sidebar-container {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #003049EE;
+    box-shadow: 5px 5px 5px #c8c8c8;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-search {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    height: 35px;
+    color: #40798C;
+    background-color: #F4EFF1;
+    outline: none;
+    border: 1px solid #40798C0D;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: 'Dosis', sans-serif;
+    text-align: center;
+}
+
+.sidebar-search:focus {
+    box-shadow: 0 0 3px 2px #a8a8a8;
 }
 
 
 @media screen and (min-width: 730px){
     .sidebar-container {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 30%;
         max-width: 350px;
         min-width: 250px;
         height: 100vh;
-        background-color: #003049EE;
-        box-shadow: 5px 5px 5px #c8c8c8;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .sidebar-search {
-        display: block;
-        margin: 10px auto;
-        width: 80%;
-        height: 35px;
-        color: #40798C;
-        background-color: #F4EFF1;
-        outline: none;
-        border: 1px solid #40798C0D;
-        border-radius: 5px;
-        font-size: 20px;
-        font-family: 'Dosis', sans-serif;
-        text-align: center;
-    }
-    .sidebar-search:focus {
-        box-shadow: 0 0 3px 2px #a8a8a8;
     }
     .label {
         color: #ffffff;
     }
-    .sidebar-radio {
+    .venue-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    }
+    .venue-sub-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .venue-img {
+        height: 100px;
+        width: 100px;
         margin: 10px;
+    }
+    
+    .venue-name {
+        font-size: 25px;
+        margin: 10px;
+        color: #ffffff;
+    }
+    .venue-text {
+        font-size: 16px;
+        line-height: 150%;
+        color: #ffffff;
     }
 }
 

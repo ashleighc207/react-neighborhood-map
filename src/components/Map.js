@@ -8,22 +8,20 @@ var map;
 
 
 class Map extends Component {
-    
+
     componentDidMount() {
-      
     const { data, markers, updateMarkers, createMarker, initializeMap } = this.props;
 
     initializeMap() 
     
     data.venues.forEach(function(marker) {
-        
-    var mark = document.createElement('div');
-    mark.className = 'marker';
-    
-    createMarker(marker.location.lng, marker.location.lat)
+        var mark = document.createElement('div');
+        mark.className = 'marker';
+        createMarker(marker.location.lng, marker.location.lat)
     });
 
     }
+    
     render() {
     return <div ref={el => this.mapContainer = el} />;
   }
