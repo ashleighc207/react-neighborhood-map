@@ -56,9 +56,11 @@ class App extends Component {
   }
 
   resetMarkers = () => {
-    this.setState({data: dataImport})
-    console.log(dataImport)
-    this.initializeMarkers();
+    this.setState({data: dataImport}, () => {
+      this.initializeMarkers();
+      });
+    console.log(this.state.data)
+    
   }
 
   clearMarkers = () => {
