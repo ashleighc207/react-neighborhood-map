@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-let error, results, query, clientId, clientSecret, api, lat, lon;
-
-clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ';
-clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH';
-api = 'https://api.foursquare.com/v2';
-lat = 39.29;
-lon = -76.61;
-
-let point;
-
 
 class Sidebar extends Component {
     
@@ -21,27 +11,37 @@ class Sidebar extends Component {
     }
     
     search = (event) => {
-    const { data, markers, updateMarkers, createMarker, initializeMap, updateVenues } = this.props;
 
-        error = '', results = [];
-        query = event.target.value;
-        
+    let error = '', 
+        results = [],
+        query = event.target.value,
+        clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
+        clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
+        api = 'https://api.foursquare.com/v2',
+        lat = 39.29,
+        lon = -76.61;
+
+    const { data, markers, updateVenues, clearMarkers, resetMarkers } = this.props;
+
         this.setState({ query })
         
         if (query) {
             fetch(`${api}/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=${lat},${lon}&query=${query}`)
                 .then(res => res.json())
                 .then((data) => {
+                    clearMarkers();
                     this.setState({results: data.response.venues})
-                    updateVenues(data.response.venues);
+                    updateVenues(data.response);
             })
         } else if(query === '') {
             this.setState({results: []})
+            resetMarkers();
         }
     
     }
 
     render() {
+
     const { query, results, error } = this.state
     
     return(

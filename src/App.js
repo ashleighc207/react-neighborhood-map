@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import Map from './components/Map.js';
 import Sidebar from './components/Sidebar.js';
 import './App.css';
-import data from './data/data.json';
+import dataImport from './data/data.json';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
-let newMarker, map;
+mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
+
+let marker, markerArr, map;
+
+markerArr = [];
 
 class App extends Component {
   state = {
-    data,
-    markers: [],
-    newMarker: {}
+    data: dataImport,
+    markers: []
   }
+ 
 
   updateMarkers = (markers) => {
     this.setState({ markers })
@@ -25,28 +29,43 @@ class App extends Component {
         center: [-76.61, 39.29], 
         zoom: 11 
     });
-    this.setState({ data })
   }
 
+  initializeMarkers = () => {
+    this.state.data.venues.forEach(venue => {
+      this.createMarker([venue.location.lng, venue.location.lat])
+    })
+  }
 
   updateVenues = (data) => {
     this.setState({ data })
-      data.map(venue => {
-        this.createMarker(venue.location.lng, venue.location.lat)
-      })
-    console.log(data)
+    this.initializeMarkers()
   }
 
-
   createMarker = (lng, lat) => {
-    newMarker = new mapboxgl.Marker()
-    .setLngLat([lng, lat])
+    marker = new mapboxgl.Marker()
+    .setLngLat(lng, lat)
     .addTo(map)
-    this.setState({ newMarker })
+    this.updateMarkerArr(marker)
+  }
+
+  updateMarkerArr = (marker) => {
+    markerArr.push(marker)
+    this.setState({markers: markerArr}, () => {
+      });
+  }
+
+  resetMarkers = () => {
+    this.setState({data: dataImport})
+    console.log(dataImport)
+    this.initializeMarkers();
   }
 
   clearMarkers = () => {
-
+    this.state.markers.map(marker => {
+      marker.remove();
+      return marker;
+    })
   }
   
   render() {
@@ -57,17 +76,14 @@ class App extends Component {
         markers={this.state.markers}
         createMarker={this.createMarker}
         updateMarkers={this.updateMarkers}
-        initializeMap={this.initializeMap}
         updateVenues={this.updateVenues}
+        clearMarkers={this.clearMarkers}
+        resetMarkers={this.resetMarkers}
         />
         
         <Map 
-        data={this.state.data}
-        markers={this.state.markers}
-        createMarker={this.createMarker}
-        updateMarkers={this.updateMarkers}
         initializeMap={this.initializeMap}
-        updateVenues={this.updateVenues}
+        initializeMarkers={this.initializeMarkers}
         />
       </div>
     );
