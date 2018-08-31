@@ -7,7 +7,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
-let marker, markerArr, map;
+let marker, popup, latLng, markerArr, map;
 
 markerArr = [];
 
@@ -16,7 +16,6 @@ class App extends Component {
     data: dataImport,
     markers: []
   }
- 
 
   updateMarkers = (markers) => {
     this.setState({ markers })
@@ -33,7 +32,11 @@ class App extends Component {
 
   initializeMarkers = () => {
     this.state.data.venues.forEach(venue => {
-      this.createMarker([venue.location.lng, venue.location.lat])
+      popup = new mapboxgl.Popup({ offset: 25 })
+      latLng = [venue.location.lng, venue.location.lat];
+      this.createMarker(latLng, popup)
+      popup.setText(venue.location.lng);
+      console.log(popup)
     })
   }
 
@@ -42,11 +45,13 @@ class App extends Component {
     this.initializeMarkers()
   }
 
-  createMarker = (lng, lat) => {
+  createMarker = (latLnd, popup) => {
     marker = new mapboxgl.Marker()
-    .setLngLat(lng, lat)
+    .setLngLat(latLng)
+    .setPopup(popup)
     .addTo(map)
     this.updateMarkerArr(marker)
+    console.log(marker)
   }
 
   updateMarkerArr = (marker) => {
@@ -58,9 +63,7 @@ class App extends Component {
   resetMarkers = () => {
     this.setState({data: dataImport}, () => {
       this.initializeMarkers();
-      });
-    console.log(this.state.data)
-    
+    });
   }
 
   clearMarkers = () => {
@@ -69,6 +72,12 @@ class App extends Component {
       return marker;
     })
   }
+
+  showInfo = () => {
+    
+  }
+
+
   
   render() {
     return (

@@ -105,5 +105,9 @@ html, body {
         line-height: 150%;
         color: #ffffff;
     }
+    .mapboxgl-popup {
+        max-width: 200px;
+        height: 200px;
+    }
 }
 
