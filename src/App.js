@@ -40,7 +40,6 @@ class App extends Component {
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
         <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
         );
-      console.log(popup)
     })
   }
 
@@ -55,7 +54,6 @@ class App extends Component {
     .setPopup(popup)
     .addTo(map)
     this.updateMarkerArr(marker)
-    console.log(marker)
   }
 
   updateMarkerArr = (marker) => {
