@@ -47,10 +47,14 @@ class Sidebar extends Component {
                         if(venue.categories.length === 0) {
                             venue.categories[0] = {icon: {prefix: "http://foroakcliff.org/wp-content/uploads/2016/05/placeholder-1024x683"}, name: "No Data"};
                         } 
-                    })                    
-
-                    this.setState({results: data.response.venues})
+                    })             
+                    if(data.response.venues.length === 0) {
+                        console.log(results.length)
+                         this.setState({error: true})  
+                    } else {
+                        this.setState({results: data.response.venues}) 
                     updateVenues(data.response);
+                }
 
                 }).catch(err => {
                     if(err) {
@@ -59,11 +63,9 @@ class Sidebar extends Component {
                 })
         } else if(query === '') {
             this.setState({results: initialVenues})
+            this.setState({error: false})
             resetMarkers();
-        } else if(query && results.length === 0) {
-            error = true;
-            console.log(error)
-        }
+        } 
     
     }
 
@@ -88,6 +90,11 @@ class Sidebar extends Component {
             </div>
             )
             )}
+            {error && 
+                <ul className="venue-list">
+                    <li className="venue-text">Sorry, no results we're found. Please try searching a different keyword</li>
+                </ul>
+            }
         </div>
     ) 
   }
