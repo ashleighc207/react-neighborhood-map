@@ -35,7 +35,11 @@ class App extends Component {
       popup = new mapboxgl.Popup({ offset: 25 })
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup)
-      popup.setText(venue.location.lng);
+      popup.setHTML(
+        `<p class="popup-text">${venue.name}</p> 
+        <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
+        <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
+        );
       console.log(popup)
     })
   }
@@ -46,7 +50,7 @@ class App extends Component {
   }
 
   createMarker = (latLnd, popup) => {
-    marker = new mapboxgl.Marker()
+    marker = new mapboxgl.Marker({color: '#40798C'})
     .setLngLat(latLng)
     .setPopup(popup)
     .addTo(map)

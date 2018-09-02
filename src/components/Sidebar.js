@@ -26,7 +26,7 @@ class Sidebar extends Component {
         this.setState({ query })
         
         if (query) {
-            fetch(`${api}/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=${lat},${lon}&query=${query}`)
+            fetch(`${api}/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=10&ll=${lat},${lon}&query=${query}`)
                 .then(res => res.json())
                 .then((data) => {
                     clearMarkers();
