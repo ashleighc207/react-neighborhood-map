@@ -17,11 +17,12 @@ class App extends Component {
   state = {
     pizzaPlaces: pizzaImport,
     venues: [],
-    markers: []
+    markers: [],
+    error: false
   }
 
   componentDidMount() {
-    // this.getVenueDetails()
+    this.getVenueDetails()
     this.initializeMap()
   }
 
@@ -81,11 +82,20 @@ class App extends Component {
        fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
         .then(res => res.json())
         .then((data) => {
+          if(data.meta.code === 200){
           this.setState({venues: [...this.state.venues, data.response.venue]}, () => {
             this.initializeMarkers(this.state.venues)
             return;
           })
-        })   
+        } else {
+          this.setState({error: true})
+        }
+        }).catch(err => {
+          if(err){
+            console.log("error:", err);
+            this.setState({error: true})
+          }
+        })
     return venueArr;
     })
   }
@@ -97,12 +107,7 @@ class App extends Component {
       <div className="app" id="map">
         <Sidebar 
         venues={this.state.venues}
-        markers={this.state.markers}
-        createMarker={this.createMarker}
-        updateMarkers={this.updateMarkers}
-        updateVenues={this.updateVenues}
-        clearMarkers={this.clearMarkers}
-        resetMarkers={this.resetMarkers}
+        error={this.state.error}
         />
         
         <Map 
