@@ -2,23 +2,27 @@ import React, { Component } from 'react';
 import Map from './components/Map.js';
 import Sidebar from './components/Sidebar.js';
 import './App.css';
-import dataImport from './data/data.json';
+import pizzaImport from './data/pizza.json';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
-let marker, popup, latLng, markerArr, map;
-
+let marker, popup, latLng, markerArr, map, venues,
+    clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
+    clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
+    api = 'https://api.foursquare.com/v2';
 markerArr = [];
 
 class App extends Component {
   state = {
-    data: dataImport,
+    pizzaPlaces: pizzaImport,
+    venues: [],
     markers: []
   }
 
-  updateMarkers = (markers) => {
-    this.setState({ markers })
+  componentDidMount() {
+    // this.getVenueDetails()
+    this.initializeMap()
   }
 
   initializeMap = () => {
@@ -30,8 +34,8 @@ class App extends Component {
     });
   }
 
-  initializeMarkers = () => {
-    this.state.data.venues.forEach(venue => {
+  initializeMarkers = (venues) => {
+    venues.map(venue => {
       popup = new mapboxgl.Popup({ offset: 25 })
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup)
@@ -40,15 +44,12 @@ class App extends Component {
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
         <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
         );
+      return popup;
     })
   }
 
-  updateVenues = (data) => {
-    this.setState({ data })
-    this.initializeMarkers()
-  }
 
-  createMarker = (latLnd, popup) => {
+  createMarker = (latLng, popup) => {
     marker = new mapboxgl.Marker({color: '#40798C'})
     .setLngLat(latLng)
     .setPopup(popup)
@@ -56,16 +57,14 @@ class App extends Component {
     this.updateMarkerArr(marker)
   }
 
+  updateMarkers = (markers) => {
+    this.setState({ markers })
+  }
+
   updateMarkerArr = (marker) => {
     markerArr.push(marker)
     this.setState({markers: markerArr}, () => {
       });
-  }
-
-  resetMarkers = () => {
-    this.setState({data: dataImport}, () => {
-      this.initializeMarkers();
-    });
   }
 
   clearMarkers = () => {
@@ -75,8 +74,20 @@ class App extends Component {
     })
   }
 
-  showInfo = () => {
-    
+  getVenueDetails = () => {
+    this.state.pizzaPlaces.venues.map(venue => {
+      let venueId = venue.id;
+      let venueArr = [];
+       fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({venues: [...this.state.venues, data.response.venue]}, () => {
+            this.initializeMarkers(this.state.venues)
+            return;
+          })
+        })   
+    return venueArr;
+    })
   }
 
 
@@ -85,7 +96,7 @@ class App extends Component {
     return (
       <div className="app" id="map">
         <Sidebar 
-        venues={this.state.data}
+        venues={this.state.venues}
         markers={this.state.markers}
         createMarker={this.createMarker}
         updateMarkers={this.updateMarkers}
