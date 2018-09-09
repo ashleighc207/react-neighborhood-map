@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-
-
-
 class Sidebar extends Component {
     
     state = {
@@ -25,8 +22,9 @@ class Sidebar extends Component {
     const { query, results, venues, error } = this.state
     
     return(
-        <section className="sidebar-container">
-            <input type="text" placeholder="Search by name" className="sidebar-search"/>
+        <aside className="sidebar-container">
+            <label htmlFor="search"/>
+            <input type="text" id="search" placeholder="Search by name" className="sidebar-search"/>
             {!error && results.map(venue => (
             <section className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
@@ -45,7 +43,7 @@ class Sidebar extends Component {
                     <p className="error-text">Oh no! There was an error getting the requested data from FourSquare. Please try again or report this error via the <a href="https://github.com/ashleighc207/react-neighborhood-map/issues">Github&nbsp;Repo.</a>
                 </p>
             }
-        </section>
+        </aside>
     ) 
   }
 }

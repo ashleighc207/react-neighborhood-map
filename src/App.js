@@ -5,13 +5,20 @@ import './App.css';
 import pizzaImport from './data/pizza.json';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
-mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
-let marker, popup, latLng, markerArr, map, venues,
+let marker, 
+    popup, 
+    latLng, 
+    markerArr, 
+    map, 
+    venues,
     clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
     clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
     api = 'https://api.foursquare.com/v2';
-markerArr = [];
+    markerArr = [];
+
+mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
+
 
 class App extends Component {
   state = {
@@ -24,6 +31,7 @@ class App extends Component {
   componentDidMount() {
     this.getVenueDetails()
     this.initializeMap()
+
   }
 
   initializeMap = () => {
@@ -49,7 +57,6 @@ class App extends Component {
     })
   }
 
-
   createMarker = (latLng, popup) => {
     marker = new mapboxgl.Marker({color: '#40798C'})
     .setLngLat(latLng)
@@ -65,6 +72,7 @@ class App extends Component {
   updateMarkerArr = (marker) => {
     markerArr.push(marker)
     this.setState({markers: markerArr}, () => {
+      return;
       });
   }
 
@@ -99,7 +107,6 @@ class App extends Component {
     return venueArr;
     })
   }
-
 
   
   render() {
