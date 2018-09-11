@@ -29,7 +29,7 @@ class Sidebar extends Component {
             <section className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
                 <section className="venue-sub-box">
-                    <img className="venue-img" src={venue.bestPhoto.prefix + venue.bestPhoto} alt={venue.name}/>
+                    <img className="venue-img"  alt={venue.name}/>
                     <ul className="venue-list">
                         <li className="venue-text">{venue.categories[0].name}</li>
                         <li className="venue-text">{venue.location.formattedAddress[0]}</li>
