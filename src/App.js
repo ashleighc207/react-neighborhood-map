@@ -11,7 +11,6 @@ let marker,
     latLng, 
     markerArr, 
     map, 
-    venues,
     clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
     clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
     api = 'https://api.foursquare.com/v2';
@@ -41,6 +40,7 @@ class App extends Component {
         center: [-76.61, 39.29], 
         zoom: 11 
     });
+    console.log(map)
   }
 
   initializeMarkers = (venues) => {
@@ -108,6 +108,19 @@ class App extends Component {
     })
   }
 
+  // filter = (query) => {
+  //   this.state.venues.filter(venue => {
+  //     venue.name === query;
+  //   })
+  //   let viewLocations = this.state.venues;
+  //   if (query){
+  //     const match = new RegExp(escapeRegExp(query),'i')
+  //     veiwLocations = this.state.venues.filter((venue) => match.test(venue.name))
+  //   }
+  //   else{
+  //     viewLocations = this.state.venues;
+  //   }
+  // }
   
   render() {
     return (
@@ -115,6 +128,7 @@ class App extends Component {
         <Sidebar 
         venues={this.state.venues}
         error={this.state.error}
+        filter={this.filter}
         />
         
         <Map 
