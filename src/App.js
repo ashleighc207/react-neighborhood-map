@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getVenueDetails()
+    // this.getVenueDetails()
     this.initializeMap()
 
   }
@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   initializeMarkers = (venues) => {
-    venues.map(venue => {
+    const allMarkers = venues.map(venue => {
       popup = new mapboxgl.Popup({ offset: 25 })
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup)
@@ -62,6 +62,7 @@ class App extends Component {
     .setLngLat(latLng)
     .setPopup(popup)
     .addTo(map)
+    // marker.getElement().addEventListener('click', markerAnimation())
     this.updateMarkerArr(marker)
   }
 
