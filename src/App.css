@@ -123,11 +123,14 @@ a {
         padding: 10px;
         text-align: center;
     }
+    div.animateMarker > g[fill] {
+        fill: #383276;
+    }
+    div.animateMarker {
+        transform: scale(2,2);
+        transition: all 1s ease-in;
+    }
 
-
-/*g[fill] {
-    fill: #383276;
-}*/
 
 @media screen and (min-width: 730px){
     .sidebar-container {

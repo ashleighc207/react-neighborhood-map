@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getVenueDetails()
+    this.getVenueDetails()
     this.initializeMap()
 
   }
@@ -92,6 +92,9 @@ class App extends Component {
         .then(res => res.json())
         .then((data) => {
           if(data.meta.code === 200){
+            if(!data.response.venue.bestPhoto) {
+              data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
+            }
           this.setState({venues: [...this.state.venues, data.response.venue]}, () => {
             this.initializeMarkers(this.state.venues)
             return;
@@ -109,6 +112,9 @@ class App extends Component {
     })
   }
 
+  // markerAnimation = (event) => {
+
+  // }
   
   render() {
     return (

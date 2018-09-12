@@ -6,7 +6,7 @@ class Sidebar extends Component {
     state = {
         query: '',
         results: [],
-        venues: [],
+        venues: this.props.venues,
         error: false
     }
 
@@ -29,7 +29,7 @@ class Sidebar extends Component {
             <section className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
                 <section className="venue-sub-box">
-                    <img className="venue-img"  alt={venue.name}/>
+                    <img className="venue-img"  alt={venue.name} src={venue.bestPhoto.prefix + venue.bestPhoto.width + "x" + venue.bestPhoto.height + venue.bestPhoto.suffix}/>
                     <ul className="venue-list">
                         <li className="venue-text">{venue.categories[0].name}</li>
                         <li className="venue-text">{venue.location.formattedAddress[0]}</li>
