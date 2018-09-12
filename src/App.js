@@ -12,6 +12,8 @@ let marker,
     markerArr, 
     map, 
     venues,
+    venueId,
+    selectedMarker = [],
     clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
     clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
     api = 'https://api.foursquare.com/v2';
@@ -19,6 +21,7 @@ let marker,
 
 mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
+let venueDev = [{name: "place", id: "91283409284", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}}, {name: "place", id: "34534524", location: {lat: 39.28, lng: -76.60, formattedAddress: ["123 w maple", "baltimore md"]}}];
 
 class App extends Component {
   state = {
@@ -29,8 +32,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getVenueDetails()
+    // this.getVenueDetails()
     this.initializeMap()
+    this.initializeMarkers(venueDev)
 
   }
 
@@ -39,15 +43,16 @@ class App extends Component {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9', 
         center: [-76.61, 39.29], 
-        zoom: 11 
+        zoom: 13 
     });
   }
 
   initializeMarkers = (venues) => {
     const allMarkers = venues.map(venue => {
       popup = new mapboxgl.Popup({ offset: 25 })
+      venueId = venue.id;
       latLng = [venue.location.lng, venue.location.lat];
-      this.createMarker(latLng, popup)
+      this.createMarker(latLng, popup, venueId)
       popup.setHTML(
         `<p class="popup-text">${venue.name}</p> 
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
@@ -57,13 +62,16 @@ class App extends Component {
     })
   }
 
-  createMarker = (latLng, popup) => {
+  createMarker = (latLng, popup, venueId) => {
     marker = new mapboxgl.Marker({color: '#40798C'})
     .setLngLat(latLng)
     .setPopup(popup)
     .addTo(map)
-    // marker.getElement().addEventListener('click', markerAnimation())
+    marker.getElement().classList.add(`${venueId}`)
+    marker.getElement().data = venueId;
+    marker.getElement().addEventListener('click', this.animateMarker)
     this.updateMarkerArr(marker)
+    return marker;
   }
 
   updateMarkers = (markers) => {
@@ -111,10 +119,20 @@ class App extends Component {
     return venueArr;
     })
   }
-
-  // markerAnimation = (event) => {
-
-  // }
+  
+  animateMarker = (event) => {
+      if(selectedMarker[0] !== event.currentTarget) {
+        selectedMarker.push(event.currentTarget)
+        selectedMarker[0].classList.remove("animateMarker")
+        selectedMarker[0].classList.remove("changeColor")
+        selectedMarker.splice(0, 1, event.currentTarget)
+        event.currentTarget.classList.toggle("animateMarker")
+        event.currentTarget.classList.toggle("changeColor")
+      } else {
+        event.currentTarget.classList.toggle("animateMarker")
+        event.currentTarget.classList.toggle("changeColor")
+      }
+    }
   
   render() {
     return (

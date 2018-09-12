@@ -49,7 +49,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50vh;
+    height: 35vh;
     background-color: #003049EE;
     box-shadow: 5px 5px 5px #c8c8c8;
     z-index: 1;
@@ -123,12 +123,14 @@ a {
         padding: 10px;
         text-align: center;
     }
-    div.animateMarker > g[fill] {
-        fill: #383276;
-    }
-    div.animateMarker {
-        transform: scale(2,2);
+    
+    div.animateMarker > svg  {
+        transform: scale(1.5, 1.5);
         transition: all 1s ease-in;
+    }
+    
+    div.changeColor > svg > g > g[fill] {
+        fill: #383276;
     }
 
 

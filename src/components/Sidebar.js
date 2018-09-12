@@ -17,6 +17,10 @@ class Sidebar extends Component {
         })
     }
 
+    filter = () => {
+        
+    }
+
     render() {
 
     const { query, results, venues, error } = this.state
