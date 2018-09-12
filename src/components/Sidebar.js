@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 import '../App.css';
+
+let venueDev = [{name: "place", categories: [{name: "test"}], id: "91283409284", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}, {name: "sushi", categories: [{name: "test"}], id: "34534524", location: {lat: 39.28, lng: -76.60, formattedAddress: ["125 w cherry", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}];
+
 
 class Sidebar extends Component {
     
     state = {
         query: '',
-        results: [],
+        results: venueDev,
         venues: this.props.venues,
         error: false
     }
@@ -16,20 +21,38 @@ class Sidebar extends Component {
             this.setState({ error: this.props.error })
         })
     }
-
-    filter = () => {
-        
+    
+    newSearch = (query) => {
+        this.setState({ query})
     }
+
 
     render() {
 
     const { query, results, venues, error } = this.state
     
+    let showingVenues;
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i')
+      showingVenues = results.filter((venue) => match.test(venue.name))
+    } else {
+      showingVenues = results
+    }
+
+    showingVenues.sort(sortBy('name'))
+    
     return(
         <aside className="sidebar-container">
             <label htmlFor="search"/>
-            <input type="text" id="search" placeholder="Search by name" className="sidebar-search"/>
-            {!error && results.map(venue => (
+            <input 
+            type="text" 
+            id="search" 
+            placeholder="Search by name" 
+            className="sidebar-search"
+            value={query}
+            onChange={(event) => this.newSearch(event.target.value)}
+            />
+            {!error && showingVenues.map(venue => (
             <section className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
                 <section className="venue-sub-box">
