@@ -45,6 +45,7 @@ class App extends Component {
         center: [-76.61, 39.29], 
         zoom: 13 
     });
+    return map;
   }
 
   initializeMarkers = (venues) => {
@@ -70,26 +71,7 @@ class App extends Component {
     marker.getElement().classList.add(`${venueId}`)
     marker.getElement().data = venueId;
     marker.getElement().addEventListener('click', this.animateMarker)
-    this.updateMarkerArr(marker)
     return marker;
-  }
-
-  updateMarkers = (markers) => {
-    this.setState({ markers })
-  }
-
-  updateMarkerArr = (marker) => {
-    markerArr.push(marker)
-    this.setState({markers: markerArr}, () => {
-      return;
-      });
-  }
-
-  clearMarkers = () => {
-    this.state.markers.map(marker => {
-      marker.remove();
-      return marker;
-    })
   }
 
   getVenueDetails = () => {
@@ -133,6 +115,17 @@ class App extends Component {
         event.currentTarget.classList.toggle("changeColor")
       }
     }
+    
+  updateMarkers = (markers) => {
+    this.setState({ markers })
+  }
+
+  clearMarkers = () => {
+    this.state.markers.map(marker => {
+      marker.remove();
+      return marker;
+    })
+  }
   
   render() {
     return (
@@ -140,6 +133,8 @@ class App extends Component {
         <Sidebar 
         venues={this.state.venues}
         error={this.state.error}
+        updateMarkers={this.updateMarkers}
+        clearMarkers={this.clearMarkers}
         />
         
         <Map 

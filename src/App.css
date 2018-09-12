@@ -126,7 +126,7 @@ a {
     
     div.animateMarker > svg  {
         transform: scale(1.5, 1.5);
-        transition: all 1s ease-in;
+        transition: all .1s ease-in;
     }
     
     div.changeColor > svg > g > g[fill] {
