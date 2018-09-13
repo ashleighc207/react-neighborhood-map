@@ -21,7 +21,7 @@ class Sidebar extends Component {
     
     state = {
         query: '',
-        results: venueDev,
+        results: [],
         venues: [],
         markers: [],
         error: false
@@ -29,9 +29,12 @@ class Sidebar extends Component {
 
     componentDidMount() {
         this.setState({venues: this.props.venues}, () => {
-        // this.getVenueDetails()
-        this.setState({markers: this.props.markers})
+        this.getVenueDetails()
         })
+    }
+
+    componentWillReceiveProps() {
+        this.setState({markers: this.props.markers})
     }
     
     newSearch = (query) => {
@@ -40,15 +43,18 @@ class Sidebar extends Component {
 
 
     getVenueDetails = () => {
-    this.state.venues.map(venue => {
+    this.state.venues.venues.map(venue => {
       let venueId = venue.id;
       let venueArr = [];
        fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
         .then(res => res.json())
         .then((data) => {
           if(data.meta.code === 200){
+            if(!data.response.venue.bestPhoto) {
+              data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
+            }
           this.setState({venues: [...this.state.venues, data.response.venue], results: [...this.state.results, data.response.venue]}, () => {
-            this.initializeMarkers(this.state.venues)
+            this.props.initializeMarkers(this.state.venues)
             return;
           })
         } else {
@@ -64,8 +70,6 @@ class Sidebar extends Component {
     })
   }
 
-
-
     render() {
 
     const { query, results, venues, markers, error } = this.state
@@ -74,11 +78,15 @@ class Sidebar extends Component {
     if (query) {
       const venueMatch = new RegExp(escapeRegExp(query), 'i')
       showingVenues = results.filter((venue) => venueMatch.test(venue.name))
+      console.log(showingMarkers)
+      console.log(markers)
       const markerMatch = new RegExp(escapeRegExp(query), 'i')
       showingMarkers = markers.filter((marker) => {
         if(!markerMatch.test(marker._element.data)) {
             marker._element.classList.add('display-none')
             console.log(marker)
+        } else {
+            marker._element.classList.remove('display-none')
         }
     })
 
