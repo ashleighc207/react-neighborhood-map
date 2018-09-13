@@ -132,6 +132,9 @@ a {
         fill: #383276;
     }
 
+    .display-none {
+        display: none;
+    }
 
 @media screen and (min-width: 730px){
     .sidebar-container {

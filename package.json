@@ -7,13 +7,9 @@
     "mapbox-gl": "^0.48.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-<<<<<<< HEAD
     "react-mapbox-gl": "^3.9.2",
-    "react-scripts": "1.1.4"
-=======
     "react-scripts": "1.1.4",
     "sort-by": "^1.2.0"
->>>>>>> e3a716e84d1bf9803dd45249d64e5074be3aa6cd
   },
   "scripts": {
     "start": "react-scripts start",

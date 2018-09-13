@@ -14,7 +14,7 @@ latLng,
 map,
 markerArr;
 
-let venueDev = [{name: "place", categories: [{name: "test"}], id: "91283409284", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}, {name: "sushi", categories: [{name: "test"}], id: "34534524", location: {lat: 39.28, lng: -76.60, formattedAddress: ["125 w cherry", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}];
+let venueDev = [{name: "place", categories: [{name: "test"}], id: "1726362738", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}, {name: "sushi", categories: [{name: "test"}], id: "345803495", location: {lat: 39.28, lng: -76.60, formattedAddress: ["125 w cherry", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}];
 
 
 class Sidebar extends Component {
@@ -22,13 +22,16 @@ class Sidebar extends Component {
     state = {
         query: '',
         results: venueDev,
-        venues: this.props.venues,
+        venues: [],
+        markers: [],
         error: false
     }
 
     componentDidMount() {
-        this.setState({venues: this.props.venues})
-        this.getVenueDetails()
+        this.setState({venues: this.props.venues}, () => {
+        // this.getVenueDetails()
+        this.setState({markers: this.props.markers})
+        })
     }
     
     newSearch = (query) => {
@@ -60,80 +63,32 @@ class Sidebar extends Component {
     return venueArr;
     })
   }
-   initializeMarkers = (venues) => {
-    const allMarkers = venues.map(venue => {
-      popup = new mapboxgl.Popup({ offset: 25 })
-      latLng = [venue.location.lng, venue.location.lat];
-      this.createMarker(latLng, popup)
-      popup.setHTML(
-        `<p class="popup-text">${venue.name}</p> 
-        <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
-        <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
-        );
-      return popup;
-    })
-  }
 
-  createMarker = (latLng, popup) => {
-    marker = new mapboxgl.Marker({color: '#40798C'})
-    .setLngLat(latLng)
-    .setPopup(popup)
-    .addTo(map)
-    // marker.getElement().addEventListener('click', markerAnimation())
-    this.updateMarkerArr(marker)
-  }
-
-  updateMarkers = (markers) => {
-    this.setState({ markers })
-  }
-
-  updateMarkerArr = (marker) => {
-    markerArr.push(marker)
-    this.setState({markers: markerArr}, () => {
-      return;
-      });
-  }
-
-  clearMarkers = () => {
-    this.state.markers.map(marker => {
-      marker.remove();
-      return marker;
-    })
-  }
-
-
-//     search = (event) => {
-//     let error = '', results = [];
-//     let query = event.target.value;
-    
-//     this.setState({ query })
-    
-//     if (query){
-//         this.props.filter(query).then((venues) => {
-//             if (venues.length > 0){
-//                  // this.updateBooks(books);
-//             } else {
-//                 this.setState({error: true})
-//             }
-//         })
-//     } else {
-//         this.setState({results: [], error: false})
-//     }
-// }
 
 
     render() {
 
-    const { query, results, venues, error } = this.state
+    const { query, results, venues, markers, error } = this.state
     
-    let showingVenues;
+    let showingVenues, showingMarkers;
     if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingVenues = results.filter((venue) => match.test(venue.name))
+      const venueMatch = new RegExp(escapeRegExp(query), 'i')
+      showingVenues = results.filter((venue) => venueMatch.test(venue.name))
+      const markerMatch = new RegExp(escapeRegExp(query), 'i')
+      showingMarkers = markers.filter((marker) => {
+        if(!markerMatch.test(marker._element.data)) {
+            marker._element.classList.add('display-none')
+            console.log(marker)
+        }
+    })
+
     } else {
       showingVenues = results
+      showingMarkers = markers
+      this.state.markers.forEach((marker) => {
+        marker._element.classList.remove('display-none')
+      })
     }
-
     showingVenues.sort(sortBy('name'))
     
     return(

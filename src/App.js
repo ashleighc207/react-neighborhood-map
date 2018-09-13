@@ -21,12 +21,12 @@ let marker,
 
 mapboxgl.accessToken ='pk.eyJ1IjoiYXNobGVpZ2hjMjA3IiwiYSI6ImNqa3dod254cjByOGUzcHBkbmpmendyN2EifQ.RzeAqtiFyTg92mZO5Y2XoA';
 
-let venueDev = [{name: "place", id: "91283409284", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}}, {name: "place", id: "34534524", location: {lat: 39.28, lng: -76.60, formattedAddress: ["123 w maple", "baltimore md"]}}];
+let venueDev = [{name: "place", categories: [{name: "test"}], id: "1726362738", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}, {name: "sushi", categories: [{name: "test"}], id: "345803495", location: {lat: 39.28, lng: -76.60, formattedAddress: ["125 w cherry", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}];
 
 class App extends Component {
   state = {
     pizzaPlaces: pizzaImport,
-    venues: [],
+    venues: venueDev,
     markers: [],
     error: false
   }
@@ -51,7 +51,7 @@ class App extends Component {
   initializeMarkers = (venues) => {
     const allMarkers = venues.map(venue => {
       popup = new mapboxgl.Popup({ offset: 25 })
-      venueId = venue.id;
+      venueId = venue.name;
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup, venueId)
       popup.setHTML(
@@ -61,6 +61,7 @@ class App extends Component {
         );
       return popup;
     })
+      this.setState({markers: markerArr})
   }
 
   createMarker = (latLng, popup, venueId) => {
@@ -71,36 +72,37 @@ class App extends Component {
     marker.getElement().classList.add(`${venueId}`)
     marker.getElement().data = venueId;
     marker.getElement().addEventListener('click', this.animateMarker)
+    markerArr.push(marker)
     return marker;
   }
 
-  getVenueDetails = () => {
-    this.state.pizzaPlaces.venues.map(venue => {
-      let venueId = venue.id;
-      let venueArr = [];
-       fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
-        .then(res => res.json())
-        .then((data) => {
-          if(data.meta.code === 200){
-            if(!data.response.venue.bestPhoto) {
-              data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
-            }
-          this.setState({venues: [...this.state.venues, data.response.venue]}, () => {
-            this.initializeMarkers(this.state.venues)
-            return;
-          })
-        } else {
-          this.setState({error: true})
-        }
-        }).catch(err => {
-          if(err){
-            console.log("error:", err);
-            this.setState({error: true})
-          }
-        })
-    return venueArr;
-    })
-  }
+  // getVenueDetails = () => {
+  //   this.state.pizzaPlaces.venues.map(venue => {
+  //     let venueId = venue.id;
+  //     let venueArr = [];
+  //      fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
+  //       .then(res => res.json())
+  //       .then((data) => {
+  //         if(data.meta.code === 200){
+  //           if(!data.response.venue.bestPhoto) {
+  //             data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
+  //           }
+  //         this.setState({venues: [...this.state.venues, data.response.venue]}, () => {
+  //           this.initializeMarkers(this.state.venues)
+  //           return;
+  //         })
+  //       } else {
+  //         this.setState({error: true})
+  //       }
+  //       }).catch(err => {
+  //         if(err){
+  //           console.log("error:", err);
+  //           this.setState({error: true})
+  //         }
+  //       })
+  //   return venueArr;
+  //   })
+  // }
   
   animateMarker = (event) => {
       if(selectedMarker[0] !== event.currentTarget) {
@@ -116,16 +118,16 @@ class App extends Component {
       }
     }
     
-  updateMarkers = (markers) => {
-    this.setState({ markers })
-  }
+  // updateMarkers = (markers) => {
+  //   this.setState({ markers })
+  // }
 
-  clearMarkers = () => {
-    this.state.markers.map(marker => {
-      marker.remove();
-      return marker;
-    })
-  }
+  // clearMarkers = () => {
+  //   this.state.markers.map(marker => {
+  //     marker.remove();
+  //     return marker;
+  //   })
+  // }
   
   render() {
     return (
@@ -133,8 +135,10 @@ class App extends Component {
         <Sidebar 
         venues={this.state.venues}
         error={this.state.error}
+        initializeMarkers={this.initializeMarkers}
         updateMarkers={this.updateMarkers}
         clearMarkers={this.clearMarkers}
+        markers={this.state.markers}
         />
         
         <Map 
