@@ -27,6 +27,8 @@ Download or clone this repo to your machine
 - Google Fonts - Dosis
 - Foursquare API
 
+## Service Workers
+Create-react-app comes with a service worker in the production build. Service workers will only work in production.
 
 ## How to Use the App
 With the app open, you can now explore the map. Each location has a marker, and when clicked, will animate and show the data for each pizza place. If you want to filter the data, use the search input and search by name. If you clear the search, the map will default back to the original markers and listed places.
