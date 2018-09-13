@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 import '../App.css';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 
 let clientId = 'ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ',
 clientSecret = 'DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH',
-api = 'https://api.foursquare.com/v2',
-marker, 
-popup, 
-latLng, 
-map,
-markerArr;
-
-let venueDev = [{name: "place", categories: [{name: "test"}], id: "1726362738", location: {lat: 39.29, lng: -76.61, formattedAddress: ["123 w maple", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}, {name: "sushi", categories: [{name: "test"}], id: "345803495", location: {lat: 39.28, lng: -76.60, formattedAddress: ["125 w cherry", "baltimore md"]}, bestPhoto: {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", width: "100", height: "100", suffix: ".png"}}];
+api = 'https://api.foursquare.com/v2';
 
 
 class Sidebar extends Component {
@@ -72,32 +64,30 @@ class Sidebar extends Component {
 
     render() {
 
-    const { query, results, venues, markers, error } = this.state
+    const { query, results, markers, error } = this.state
     
-    let showingVenues, showingMarkers;
+    let showVenues, showMarkers;
     if (query) {
       const venueMatch = new RegExp(escapeRegExp(query), 'i')
-      showingVenues = results.filter((venue) => venueMatch.test(venue.name))
-      console.log(showingMarkers)
-      console.log(markers)
+      showVenues = results.filter((venue) => venueMatch.test(venue.name))
       const markerMatch = new RegExp(escapeRegExp(query), 'i')
-      showingMarkers = markers.filter((marker) => {
+      showMarkers = markers.filter((marker) => {
         if(!markerMatch.test(marker._element.data)) {
             marker._element.classList.add('display-none')
-            console.log(marker)
         } else {
             marker._element.classList.remove('display-none')
         }
+        return showMarkers;
     })
 
     } else {
-      showingVenues = results
-      showingMarkers = markers
+      showVenues = results
+      showMarkers = markers
       this.state.markers.forEach((marker) => {
         marker._element.classList.remove('display-none')
       })
     }
-    showingVenues.sort(sortBy('name'))
+    showVenues.sort(sortBy('name'))
     
     return(
         <aside className="sidebar-container">
@@ -110,7 +100,7 @@ class Sidebar extends Component {
             value={query}
             onChange={(event) => this.newSearch(event.target.value)}
             />
-            {!error && showingVenues.map(venue => (
+            {!error && showVenues.map(venue => (
             <section className="venue-box" key={venue.id}>
                 <h2 className="venue-name">{venue.name}</h2>
                 <section className="venue-sub-box">

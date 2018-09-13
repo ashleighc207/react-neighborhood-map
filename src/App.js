@@ -10,7 +10,6 @@ let marker,
     popup, 
     latLng,  
     map, 
-    venues,
     venueId,
     selectedMarker = [];
 
@@ -35,7 +34,7 @@ class App extends Component {
     map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9', 
-        center: [-76.61, 39.29], 
+        center: [-76.62, 39.28], 
         zoom: 13 
     });
     return map;
@@ -52,7 +51,7 @@ class App extends Component {
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
         <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
         );
-      return popup;
+      return allMarkers;
     })
       this.setState({markers: markerArr})
   }
