@@ -47,7 +47,7 @@ class App extends Component {
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup, venueId)
       popup.setHTML(
-        `<p class="popup-text">${venue.name}</p> 
+        `<p class="popup-text" tabindex="-1">${venue.name}</p> 
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
         <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
         );

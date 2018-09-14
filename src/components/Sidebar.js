@@ -91,12 +91,12 @@ class Sidebar extends Component {
     
     return(
         <aside className="sidebar-container">
-            <label htmlFor="search"/>
             <input 
             type="text" 
             id="search" 
             placeholder="Search by name" 
             className="sidebar-search"
+            aria-label="search"
             value={query}
             onChange={(event) => this.newSearch(event.target.value)}
             />
