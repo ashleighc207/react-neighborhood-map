@@ -24,29 +24,27 @@ class Sidebar extends Component {
         this.getVenueDetails()
         })
     }
-
-    componentWillReceiveProps() {
-        // this.setState({markers: this.props.markers})
-    }
     
+    // Listen for change in search bar query
     newSearch = (query) => {
         this.setState({ query})
     }
 
-
+    // API call to Foursquare
     getVenueDetails = () => {
     this.state.venues.venues.map(venue => {
       let venueId = venue.id;
        fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
         .then(res => res.json())
         .then((data) => {
+            // Assign a placeholder image when the returned venue does not contain an image
           if(data.meta.code === 200){
             if(!data.response.venue.bestPhoto) {
               data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
             }
+            // Set the venues state to each venue as the details come in and initialize the corresponding markers
           this.setState({venues: [...this.state.venues, data.response.venue], results: [...this.state.results, data.response.venue]}, () => {
                     this.props.initializeMarkers([data.response.venue])
-
             return;
           })
         } else {
@@ -59,7 +57,6 @@ class Sidebar extends Component {
           }
         })
     })
-    console.log(this.state.venues)
   }
 
     render() {
@@ -67,9 +64,13 @@ class Sidebar extends Component {
     const { query, results, markers, error } = this.state
     
     let showVenues, showMarkers;
+
+    // Filter venue list based on query input
     if (query) {
       const venueMatch = new RegExp(escapeRegExp(query), 'i')
       showVenues = results.filter((venue) => venueMatch.test(venue.name))
+
+      // Filter markers based on query input
       const markerMatch = new RegExp(escapeRegExp(query), 'i')
       showMarkers = markers.filter((marker) => {
         if(!markerMatch.test(marker._element.data)) {
@@ -87,6 +88,7 @@ class Sidebar extends Component {
         marker._element.classList.remove('display-none')
       })
     }
+    
     showVenues.sort(sortBy('name'))
     
     return(

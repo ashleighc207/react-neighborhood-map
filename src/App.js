@@ -30,6 +30,7 @@ class App extends Component {
 
   }
 
+  // Initialize Mapbox Map and handle errors loading the map api
   initializeMap = () => {
     map = new mapboxgl.Map({
         container: 'map',
@@ -37,9 +38,15 @@ class App extends Component {
         center: [-76.62, 39.28], 
         zoom: 13 
     });
+
+    map.on('error', () => {
+      alert("Uh oh! Mapbox was unable to load. Please retry or check your connection.")
+    })
+
     return map;
   }
 
+  // Create popups and call createMarker to create the marker with the associated popup
   initializeMarkers = (venues) => {
     const allMarkers = venues.map(venue => {
       popup = new mapboxgl.Popup({ offset: 25 })
@@ -54,6 +61,7 @@ class App extends Component {
     })
   }
 
+  // Create Mapbox markers and add correct event listeners
   createMarker = (latLng, popup, venueId) => {
     marker = new mapboxgl.Marker({color: '#40798C'})
     .setLngLat(latLng)
@@ -64,9 +72,9 @@ class App extends Component {
     marker.getElement().addEventListener('focus', this.animateMarker)
     marker.getElement().addEventListener('click', this.animateMarker)
     marker.getElement().setAttribute('tabindex', 0)
-    console.log(marker)
   }
   
+  // Animate the markers on click
   animateMarker = (event) => {
       if(selectedMarker[0] !== event.currentTarget) {
         selectedMarker.push(event.currentTarget)
