@@ -26,7 +26,7 @@ class Sidebar extends Component {
     }
 
     componentWillReceiveProps() {
-        this.setState({markers: this.props.markers})
+        // this.setState({markers: this.props.markers})
     }
     
     newSearch = (query) => {
@@ -37,7 +37,6 @@ class Sidebar extends Component {
     getVenueDetails = () => {
     this.state.venues.venues.map(venue => {
       let venueId = venue.id;
-      let venueArr = [];
        fetch(`${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`)
         .then(res => res.json())
         .then((data) => {
@@ -46,7 +45,8 @@ class Sidebar extends Component {
               data.response.venue.bestPhoto = {prefix: "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-", suffix: ".png", width: 100, height: 100}
             }
           this.setState({venues: [...this.state.venues, data.response.venue], results: [...this.state.results, data.response.venue]}, () => {
-            this.props.initializeMarkers(this.state.venues)
+                    this.props.initializeMarkers([data.response.venue])
+
             return;
           })
         } else {
@@ -58,8 +58,8 @@ class Sidebar extends Component {
             this.setState({error: true})
           }
         })
-    return venueArr;
     })
+    console.log(this.state.venues)
   }
 
     render() {
@@ -102,7 +102,7 @@ class Sidebar extends Component {
             />
             {!error && showVenues.map(venue => (
             <section className="venue-box" key={venue.id}>
-                <h2 className="venue-name">{venue.name}</h2>
+                <h2 className="venue-name" role="heading" tabIndex="0">{venue.name}</h2>
                 <section className="venue-sub-box">
                     <img className="venue-img"  alt={venue.name} src={venue.bestPhoto.prefix + venue.bestPhoto.width + "x" + venue.bestPhoto.height + venue.bestPhoto.suffix}/>
                     <ul className="venue-list">

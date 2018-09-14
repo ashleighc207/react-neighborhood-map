@@ -47,13 +47,11 @@ class App extends Component {
       latLng = [venue.location.lng, venue.location.lat];
       this.createMarker(latLng, popup, venueId)
       popup.setHTML(
-        `<p class="popup-text" tabindex="-1">${venue.name}</p> 
+        `<p class="popup-text" tabindex="1">${venue.name}</p> 
         <p class="popup-text">${venue.location.formattedAddress[0]}</p> 
         <p class="popup-text">${venue.location.formattedAddress[1]}</p>`
         );
-      return allMarkers;
     })
-      this.setState({markers: markerArr})
   }
 
   createMarker = (latLng, popup, venueId) => {
@@ -63,9 +61,10 @@ class App extends Component {
     .addTo(map)
     marker.getElement().classList.add(`${venueId}`)
     marker.getElement().data = venueId;
+    marker.getElement().addEventListener('focus', this.animateMarker)
     marker.getElement().addEventListener('click', this.animateMarker)
-    markerArr.push(marker)
-    return marker;
+    marker.getElement().setAttribute('tabindex', 0)
+    console.log(marker)
   }
   
   animateMarker = (event) => {
