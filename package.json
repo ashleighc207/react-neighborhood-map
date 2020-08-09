@@ -2,22 +2,37 @@
   "name": "react-neighborhood-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ashleighc207.github.io/react-neighborhood-map/",
   "dependencies": {
-    "escape-string-regexp": "^1.0.5",
-    "mapbox-gl": "^0.48.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-mapbox-gl": "^3.9.2",
-    "react-scripts": "1.1.4",
+    "escape-string-regexp": "^4.0.0",
+    "gh-pages": "^3.1.0",
+    "mapbox-gl": "^1.11.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-mapbox-gl": "^4.8.6",
+    "react-scripts": "^3.4.1",
     "sort-by": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "cors": "^2.8.4"
+    "cors": "^2.8.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-neighborhood-map/static/css/main.1d92345d.chunk.css",
+    "main.js": "/react-neighborhood-map/static/js/main.9dcf63b8.chunk.js",
+    "main.js.map": "/react-neighborhood-map/static/js/main.9dcf63b8.chunk.js.map",
+    "runtime-main.js": "/react-neighborhood-map/static/js/runtime-main.3c46f12d.js",
+    "runtime-main.js.map": "/react-neighborhood-map/static/js/runtime-main.3c46f12d.js.map",
+    "static/js/2.64894983.chunk.js": "/react-neighborhood-map/static/js/2.64894983.chunk.js",
+    "static/js/2.64894983.chunk.js.map": "/react-neighborhood-map/static/js/2.64894983.chunk.js.map",
+    "index.html": "/react-neighborhood-map/index.html",
+    "precache-manifest.1f8c5625914e165046db53fc62c434e6.js": "/react-neighborhood-map/precache-manifest.1f8c5625914e165046db53fc62c434e6.js",
+    "service-worker.js": "/react-neighborhood-map/service-worker.js",
+    "static/css/main.1d92345d.chunk.css.map": "/react-neighborhood-map/static/css/main.1d92345d.chunk.css.map",
+    "static/js/2.64894983.chunk.js.LICENSE.txt": "/react-neighborhood-map/static/js/2.64894983.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c46f12d.js",
+    "static/js/2.64894983.chunk.js",
+    "static/css/main.1d92345d.chunk.css",
+    "static/js/main.9dcf63b8.chunk.js"
+  ]
+}
