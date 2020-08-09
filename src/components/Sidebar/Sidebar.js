@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import escapeRegExp from "escape-string-regexp";
 import sortBy from "sort-by";
+import yelp from "../../api/yelp";
 import "./Sidebar.css";
 
-let clientId = "ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ",
-  clientSecret = "DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH",
-  api = "https://api.foursquare.com/v2";
+const clientId = "ZSPTQF2ZF05OMT3EYKCTCVOTLZ0SOS5CK55HEORQU0VG55NZ";
+const clientSecret = "DQJT5J4TFN3MBG2FK1SPDUVZL5IPM2RMOWETL3FQWGGXJQLH";
 
 class Sidebar extends Component {
   state = {
@@ -27,47 +27,45 @@ class Sidebar extends Component {
     this.setState({ query });
   };
 
+  loadVenueData = async id => {
+    try {
+      let resp = await yelp.get(
+        `/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`
+      );
+      if (resp.status === 200) {
+        if (!resp.data.response.venue.bestPhoto) {
+          resp.data.response.venue.bestPhoto = {
+            prefix:
+              "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-",
+            suffix: ".png",
+            width: 100,
+            height: 100
+          };
+        }
+        // Set the venues state to each venue as the details come in and initialize the corresponding markers
+        this.setState(
+          {
+            venues: [...this.state.venues, resp.data.response.venue],
+            results: [...this.state.results, resp.data.response.venue]
+          },
+          () => {
+            this.props.initializeMarkers([resp.data.response.venue]);
+            return;
+          }
+        );
+      } else {
+        this.setState({ error: true });
+      }
+    } catch (err) {
+      console.warn(`Get Venue Data Error: ${err}`);
+      this.setState({ error: true });
+    }
+  };
+
   // API call to Foursquare
-  getVenueDetails = () => {
+  getVenueDetails = async () => {
     this.state.venues.map(venue => {
-      let venueId = venue.id;
-      fetch(
-        `${api}/venues/${venueId}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323`
-      )
-        .then(res => res.json())
-        .then(data => {
-          // Assign a placeholder image when the returned venue does not contain an image
-          if (data.meta.code === 200) {
-            if (!data.response.venue.bestPhoto) {
-              data.response.venue.bestPhoto = {
-                prefix:
-                  "https://www.kiabrisa.com.br/wp-content/uploads/revslider/home5/placeholder-1200x500-",
-                suffix: ".png",
-                width: 100,
-                height: 100
-              };
-            }
-            // Set the venues state to each venue as the details come in and initialize the corresponding markers
-            this.setState(
-              {
-                venues: [...this.state.venues, data.response.venue],
-                results: [...this.state.results, data.response.venue]
-              },
-              () => {
-                this.props.initializeMarkers([data.response.venue]);
-                return;
-              }
-            );
-          } else {
-            this.setState({ error: true });
-          }
-        })
-        .catch(err => {
-          if (err) {
-            console.log("error:", err);
-            this.setState({ error: true });
-          }
-        });
+      this.loadVenueData(venue.id);
       return venue;
     });
   };
