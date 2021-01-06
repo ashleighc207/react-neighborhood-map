@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://ashleighc207.github.io/react-neighborhood-map/",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "escape-string-regexp": "^4.0.0",
     "gh-pages": "^3.1.0",
     "mapbox-gl": "^1.11.1",
